@@ -1,6 +1,82 @@
 export const NarcsData = {
   abi: [
     {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "destinationChainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "DestinationChainNotAllowlisted",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "router",
+          type: "address",
+        },
+      ],
+      name: "InvalidRouter",
+      type: "error",
+    },
+    {
+      inputs: [],
+      name: "OnlySelf",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "sender",
+          type: "address",
+        },
+      ],
+      name: "SenderNotAllowed",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "sourceChainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "SourceChainNotAllowed",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          internalType: "bytes",
+          name: "err",
+          type: "bytes",
+        },
+      ],
+      name: "TokenTransferFailed",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+      ],
+      name: "TransferNotFailed",
+      type: "error",
+    },
+    {
       anonymous: false,
       inputs: [
         {
@@ -106,6 +182,31 @@ export const NarcsData = {
       inputs: [
         {
           indexed: false,
+          internalType: "string",
+          name: "mintedBooster",
+          type: "string",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "owner",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256",
+        },
+      ],
+      name: "Burned",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: false,
           internalType: "uint8",
           name: "version",
           type: "uint8",
@@ -151,6 +252,56 @@ export const NarcsData = {
       inputs: [
         {
           indexed: true,
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          indexed: true,
+          internalType: "uint64",
+          name: "sourceChainSelector",
+          type: "uint64",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "sender",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "receiver",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "ReceivedCrossChain",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+      ],
+      name: "TokensRecovered",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
           internalType: "address",
           name: "from",
           type: "address",
@@ -176,6 +327,62 @@ export const NarcsData = {
       inputs: [
         {
           indexed: true,
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          indexed: false,
+          internalType: "bytes",
+          name: "reason",
+          type: "bytes",
+        },
+      ],
+      name: "TransferFailed",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          indexed: true,
+          internalType: "uint64",
+          name: "destinationChainSelector",
+          type: "uint64",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "sender",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "address",
+          name: "receiver",
+          type: "address",
+        },
+        {
+          indexed: false,
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "TransferedCrossChain",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
           internalType: "address",
           name: "implementation",
           type: "address",
@@ -183,6 +390,130 @@ export const NarcsData = {
       ],
       name: "Upgraded",
       type: "event",
+    },
+    {
+      inputs: [],
+      name: "_minter",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "_destinationChainSelector",
+          type: "uint64",
+        },
+        {
+          internalType: "bool",
+          name: "allowed",
+          type: "bool",
+        },
+      ],
+      name: "allowlistDestinationChain",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_sender",
+          type: "address",
+        },
+        {
+          internalType: "bool",
+          name: "allowed",
+          type: "bool",
+        },
+      ],
+      name: "allowlistSender",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "_sourceChainSelector",
+          type: "uint64",
+        },
+        {
+          internalType: "bool",
+          name: "allowed",
+          type: "bool",
+        },
+      ],
+      name: "allowlistSourceChain",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "",
+          type: "uint64",
+        },
+      ],
+      name: "allowlistedDestinationChains",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      name: "allowlistedSenders",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "",
+          type: "uint64",
+        },
+      ],
+      name: "allowlistedSourceChains",
+      outputs: [
+        {
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
     },
     {
       inputs: [
@@ -224,27 +555,116 @@ export const NarcsData = {
     {
       inputs: [
         {
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
+          components: [
+            {
+              internalType: "bytes32",
+              name: "messageId",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint64",
+              name: "sourceChainSelector",
+              type: "uint64",
+            },
+            {
+              internalType: "bytes",
+              name: "sender",
+              type: "bytes",
+            },
+            {
+              internalType: "bytes",
+              name: "data",
+              type: "bytes",
+            },
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "token",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct Client.EVMTokenAmount[]",
+              name: "destTokenAmounts",
+              type: "tuple[]",
+            },
+          ],
+          internalType: "struct Client.Any2EVMMessage",
+          name: "any2EvmMessage",
+          type: "tuple",
         },
       ],
-      name: "burn",
+      name: "ccipReceive",
       outputs: [],
       stateMutability: "nonpayable",
       type: "function",
     },
     {
-      inputs: [],
-      name: "chainId",
-      outputs: [
+      inputs: [
+        {
+          internalType: "address",
+          name: "_to",
+          type: "address",
+        },
         {
           internalType: "uint256",
-          name: "",
+          name: "tokenId",
           type: "uint256",
         },
+        {
+          internalType: "uint64",
+          name: "chainSelector",
+          type: "uint64",
+        },
       ],
-      stateMutability: "view",
+      name: "crossChainTransfer",
+      outputs: [
+        {
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+      ],
+      stateMutability: "payable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_from",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "_to",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+        {
+          internalType: "uint64",
+          name: "chainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "crossChainTransferFrom",
+      outputs: [
+        {
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+      ],
+      stateMutability: "payable",
       type: "function",
     },
     {
@@ -267,10 +687,70 @@ export const NarcsData = {
       type: "function",
     },
     {
+      inputs: [],
+      name: "getFailedMessagesIds",
+      outputs: [
+        {
+          internalType: "bytes32[]",
+          name: "ids",
+          type: "bytes32[]",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
       inputs: [
         {
           internalType: "uint256",
-          name: "_chainId",
+          name: "_budsAmount",
+          type: "uint256",
+        },
+        {
+          internalType: "uint64",
+          name: "_destinationChainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "getFeesForCCTX",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "getRouter",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "_router",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "_minter_",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "_seed",
           type: "uint256",
         },
       ],
@@ -315,28 +795,10 @@ export const NarcsData = {
       outputs: [
         {
           internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "to",
-          type: "address",
-        },
-        {
-          internalType: "uint256",
           name: "tokenId",
           type: "uint256",
         },
       ],
-      name: "mintTokenId",
-      outputs: [],
       stateMutability: "nonpayable",
       type: "function",
     },
@@ -386,6 +848,58 @@ export const NarcsData = {
       type: "function",
     },
     {
+      inputs: [
+        {
+          components: [
+            {
+              internalType: "bytes32",
+              name: "messageId",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint64",
+              name: "sourceChainSelector",
+              type: "uint64",
+            },
+            {
+              internalType: "bytes",
+              name: "sender",
+              type: "bytes",
+            },
+            {
+              internalType: "bytes",
+              name: "data",
+              type: "bytes",
+            },
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "token",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct Client.EVMTokenAmount[]",
+              name: "destTokenAmounts",
+              type: "tuple[]",
+            },
+          ],
+          internalType: "struct Client.Any2EVMMessage",
+          name: "any2EvmMessage",
+          type: "tuple",
+        },
+      ],
+      name: "processMessage",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
       inputs: [],
       name: "proxiableUUID",
       outputs: [
@@ -403,6 +917,66 @@ export const NarcsData = {
       name: "renounceOwnership",
       outputs: [],
       stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+      ],
+      name: "retryFailedTransfer",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "router",
+      outputs: [
+        {
+          internalType: "contract IRouterClient",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "bytes32",
+          name: "",
+          type: "bytes32",
+        },
+      ],
+      name: "s_messageContents",
+      outputs: [
+        {
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          internalType: "uint64",
+          name: "sourceChainSelector",
+          type: "uint64",
+        },
+        {
+          internalType: "bytes",
+          name: "sender",
+          type: "bytes",
+        },
+        {
+          internalType: "bytes",
+          name: "data",
+          type: "bytes",
+        },
+      ],
+      stateMutability: "view",
       type: "function",
     },
     {
@@ -457,19 +1031,6 @@ export const NarcsData = {
       type: "function",
     },
     {
-      inputs: [],
-      name: "sequenceNumber",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "_value",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
       inputs: [
         {
           internalType: "address",
@@ -490,19 +1051,6 @@ export const NarcsData = {
     {
       inputs: [
         {
-          internalType: "string",
-          name: "URIParam",
-          type: "string",
-        },
-      ],
-      name: "setBaseURI",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
           internalType: "address",
           name: "newMinter",
           type: "address",
@@ -516,12 +1064,12 @@ export const NarcsData = {
     {
       inputs: [
         {
-          internalType: "address",
-          name: "_address",
-          type: "address",
+          internalType: "string",
+          name: "_uri",
+          type: "string",
         },
       ],
-      name: "setStakingContract",
+      name: "setUri",
       outputs: [],
       stateMutability: "nonpayable",
       type: "function",
@@ -542,7 +1090,7 @@ export const NarcsData = {
           type: "bool",
         },
       ],
-      stateMutability: "view",
+      stateMutability: "pure",
       type: "function",
     },
     {
@@ -571,19 +1119,6 @@ export const NarcsData = {
         {
           internalType: "uint256",
           name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
-      name: "tokenIds",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "_value",
           type: "uint256",
         },
       ],
@@ -727,5 +1262,5 @@ export const NarcsData = {
       type: "function",
     },
   ],
-  address: "0xCcB037155eC4c262F1e3b8adADe0872179086F4F",
+  address: "0x869721c37D5551DA021584A343dCb71173765a74",
 };

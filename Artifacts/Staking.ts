@@ -3,6 +3,17 @@ export const StakingData = {
     {
       inputs: [
         {
+          internalType: "uint64",
+          name: "destinationChainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "DestinationChainNotAllowlisted",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
           internalType: "address",
           name: "router",
           type: "address",
@@ -13,7 +24,34 @@ export const StakingData = {
     },
     {
       inputs: [],
+      name: "OnlySelf",
+      type: "error",
+    },
+    {
+      inputs: [],
       name: "OnlySimulatedBackend",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "sender",
+          type: "address",
+        },
+      ],
+      name: "SenderNotAllowed",
+      type: "error",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint64",
+          name: "sourceChainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "SourceChainNotAllowed",
       type: "error",
     },
     {
@@ -249,6 +287,38 @@ export const StakingData = {
       type: "event",
     },
     {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          indexed: false,
+          internalType: "bytes",
+          name: "reason",
+          type: "bytes",
+        },
+      ],
+      name: "crossChainStakeFailed",
+      type: "event",
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+      ],
+      name: "recoveredFailedStake",
+      type: "event",
+    },
+    {
       inputs: [],
       name: "_budsToken",
       outputs: [
@@ -306,6 +376,32 @@ export const StakingData = {
       outputs: [
         {
           internalType: "contract IFarmer",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "_raidHandler",
+      outputs: [
+        {
+          internalType: "contract IRaidHandler",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [],
+      name: "_router",
+      outputs: [
+        {
+          internalType: "contract IRouterClient",
           name: "",
           type: "address",
         },
@@ -471,6 +567,19 @@ export const StakingData = {
     {
       inputs: [
         {
+          internalType: "uint256",
+          name: "tokenId",
+          type: "uint256",
+        },
+      ],
+      name: "boostStake",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
           internalType: "address",
           name: "",
           type: "address",
@@ -535,7 +644,7 @@ export const StakingData = {
             },
           ],
           internalType: "struct Client.Any2EVMMessage",
-          name: "message",
+          name: "any2EvmMessage",
           type: "tuple",
         },
       ],
@@ -605,6 +714,29 @@ export const StakingData = {
         },
       ],
       name: "crossChainStake",
+      outputs: [],
+      stateMutability: "payable",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "_budsAmount",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "_farmerTokenId",
+          type: "uint256",
+        },
+        {
+          internalType: "uint64",
+          name: "chainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "crossChainUnstake",
       outputs: [],
       stateMutability: "payable",
       type: "function",
@@ -814,7 +946,23 @@ export const StakingData = {
       type: "function",
     },
     {
-      inputs: [],
+      inputs: [
+        {
+          internalType: "address",
+          name: "_router_",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "_treasuryWallet",
+          type: "address",
+        },
+        {
+          internalType: "address[5]",
+          name: "_tokenAddresses",
+          type: "address[5]",
+        },
+      ],
       name: "initialize",
       outputs: [],
       stateMutability: "nonpayable",
@@ -831,6 +979,29 @@ export const StakingData = {
         },
       ],
       stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "_budsAmount",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "_farmerTokenId",
+          type: "uint256",
+        },
+        {
+          internalType: "uint64",
+          name: "chainSelector",
+          type: "uint64",
+        },
+      ],
+      name: "moveStakeToOtherChain",
+      outputs: [],
+      stateMutability: "payable",
       type: "function",
     },
     {
@@ -907,6 +1078,58 @@ export const StakingData = {
       type: "function",
     },
     {
+      inputs: [
+        {
+          components: [
+            {
+              internalType: "bytes32",
+              name: "messageId",
+              type: "bytes32",
+            },
+            {
+              internalType: "uint64",
+              name: "sourceChainSelector",
+              type: "uint64",
+            },
+            {
+              internalType: "bytes",
+              name: "sender",
+              type: "bytes",
+            },
+            {
+              internalType: "bytes",
+              name: "data",
+              type: "bytes",
+            },
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "token",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct Client.EVMTokenAmount[]",
+              name: "destTokenAmounts",
+              type: "tuple[]",
+            },
+          ],
+          internalType: "struct Client.Any2EVMMessage",
+          name: "any2EvmMessage",
+          type: "tuple",
+        },
+      ],
+      name: "processMessage",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+    {
       inputs: [],
       name: "proxiableUUID",
       outputs: [
@@ -947,19 +1170,6 @@ export const StakingData = {
     },
     {
       inputs: [],
-      name: "raidHandler",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [],
       name: "renounceOwnership",
       outputs: [],
       stateMutability: "nonpayable",
@@ -985,16 +1195,50 @@ export const StakingData = {
       type: "function",
     },
     {
-      inputs: [],
-      name: "router",
+      inputs: [
+        {
+          internalType: "bytes32",
+          name: "",
+          type: "bytes32",
+        },
+      ],
+      name: "s_messageContents",
       outputs: [
         {
-          internalType: "contract IRouterClient",
-          name: "",
-          type: "address",
+          internalType: "bytes32",
+          name: "messageId",
+          type: "bytes32",
+        },
+        {
+          internalType: "uint64",
+          name: "sourceChainSelector",
+          type: "uint64",
+        },
+        {
+          internalType: "bytes",
+          name: "sender",
+          type: "bytes",
+        },
+        {
+          internalType: "bytes",
+          name: "data",
+          type: "bytes",
         },
       ],
       stateMutability: "view",
+      type: "function",
+    },
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "__router",
+          type: "address",
+        },
+      ],
+      name: "setCCIPRouter",
+      outputs: [],
+      stateMutability: "nonpayable",
       type: "function",
     },
     {
@@ -1225,5 +1469,5 @@ export const StakingData = {
       type: "function",
     },
   ],
-  address: "0x9cbbc3f4a3E30b60008EdD3a2307F963726cD7d4",
+  address: "0x13CF084A4E93f8eeE5118396761ff5fA1E5e1694",
 };

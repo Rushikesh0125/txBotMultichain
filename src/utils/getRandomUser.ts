@@ -1,5 +1,6 @@
+import { getRandomNumber } from "./getRandomNumber";
 export const getRandomUser = async () => {
-  const randNo = Math.floor(Math.random() * (3 - 0 + 1) + 0);
+  const randNo = getRandomNumber(0, 3);
   const privateKeys = [
     process.env.USER1_PRIVATE,
     process.env.USER2_PRIVATE,

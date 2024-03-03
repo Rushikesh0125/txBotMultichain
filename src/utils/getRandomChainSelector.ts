@@ -1,28 +1,36 @@
+import { getRandomNumber } from "./getRandomNumber";
+
 export const getRandomChainSelector = async (network: string) => {
-  let randFactor = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-  randFactor = randFactor % 2;
   const chainSelectors = [
     "16015286601757825753",
     "12532609583862916517",
     "13264668187771770619",
+    "3478487238524512106",
+    "14767482510784806043",
   ];
   if (network == "sepolia") {
-    if (randFactor == 0) {
-      return chainSelectors[1];
-    } else {
-      return chainSelectors[2];
-    }
+    let randFactor = getRandomNumber(1, 4);
+    return chainSelectors[randFactor];
   } else if (network == "mumbai") {
-    if (randFactor == 0) {
-      return chainSelectors[0];
-    } else {
-      return chainSelectors[2];
+    let randFactor = getRandomNumber(0, 4);
+    if (randFactor == 1) {
+      randFactor += 1;
     }
-  } else {
-    if (randFactor == 0) {
-      return chainSelectors[0];
-    } else {
-      return chainSelectors[1];
+    return chainSelectors[randFactor];
+  } else if (network == "bscTestnet") {
+    let randFactor = getRandomNumber(0, 4);
+    if (randFactor == 2) {
+      randFactor += 1;
     }
+    return chainSelectors[randFactor];
+  } else if (network == "arbSepolia") {
+    let randFactor = getRandomNumber(0, 4);
+    if (randFactor == 3) {
+      randFactor += 1;
+    }
+    return chainSelectors[randFactor];
+  } else if (network == "fuji") {
+    let randFactor = getRandomNumber(0, 3);
+    return chainSelectors[randFactor];
   }
 };

@@ -303,5 +303,5 @@ export const NFTFaucetData = {
       type: "function",
     },
   ],
-  address: "0x132A9eb1Fb92D0823773e8eb6d91f5a8a6552be1",
+  address: "0x046c17f7a72AE9475f42B1210b1086f801bb1EF8",
 };

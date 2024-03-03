@@ -5,6 +5,7 @@ import { crossChainStake } from "./scripts/crossChainStake";
 import { raidPool } from "./scripts/raidPool";
 import { burnBuds } from "./scripts/burnBuds";
 import { unStake } from "./scripts/unStake";
+import { getRandomNumber } from "./utils/getRandomNumber";
 
 async function executeScript(
   script: Function,
@@ -19,8 +20,8 @@ async function executeScript(
 
 function scheduleScriptsForNetwork(network: string, scripts: Function[]) {
   async function runScript() {
-    const randomScript = scripts[Math.floor(Math.random() * scripts.length)];
-    const interval = Math.floor(Math.random() * (90 - 45 + 1) + 45);
+    const randomScript = scripts[getRandomNumber(0, 5)];
+    const interval = Math.floor(Math.random() * (3 - 2 + 1) + 2);
 
     await executeScript(randomScript, network, interval);
 
@@ -33,7 +34,7 @@ function scheduleScriptsForNetwork(network: string, scripts: Function[]) {
 }
 
 // Networks and the common set of scripts
-const networks = ["sepolia", "mumbai", "bscTestnet"];
+const networks = ["sepolia", "mumbai", "bscTestnet", "arbSepolia", "fuji"];
 const commonScripts = [
   addStake,
   burnBuds,

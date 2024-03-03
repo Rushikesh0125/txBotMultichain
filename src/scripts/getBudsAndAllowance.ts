@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { getContractData } from "../utils/getContractData";
 import { getContractInstance } from "../utils/getContractInstance";
 import { getSigner } from "../utils/getSigner";
+import { getRandomNumber } from "../utils/getRandomNumber";
 
 export const getBudsAndAllowance = async (
   privateKey: string,
@@ -10,7 +11,7 @@ export const getBudsAndAllowance = async (
 ) => {
   console.log("randomizing the amount");
   const randAmmount = ethers.utils.parseEther(
-    Math.floor(Math.random() * (12000 - 2000 + 1) + 2000).toString()
+    getRandomNumber(2000, 12000).toString()
   );
   console.log("getting buds contract");
   const budsInstance = await getContractInstance("Buds", network, privateKey);

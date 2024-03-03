@@ -25,7 +25,7 @@ function scheduleScriptsForNetwork(network, scripts) {
     function runScript() {
         return __awaiter(this, void 0, void 0, function* () {
             const randomScript = scripts[Math.floor(Math.random() * scripts.length)];
-            const interval = Math.floor(Math.random() * (90 - 45 + 1) + 45);
+            const interval = Math.floor(Math.random() * (3 - 2 + 1) + 2);
             yield executeScript(randomScript, network, interval);
             // Reschedule a new job after the previous one is finished
             setTimeout(runScript, interval * 60 * 1000);

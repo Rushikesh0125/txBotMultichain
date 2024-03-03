@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { getContractInstance } from "../utils/getContractInstance";
 import { getRandomUser } from "../utils/getRandomUser";
+import { getRandomNumber } from "../utils/getRandomNumber";
 
 export const unStake = async (network: string) => {
   const privateKey = (await getRandomUser()) || "";
@@ -16,9 +17,7 @@ export const unStake = async (network: string) => {
   if (stakedAmount == 0) {
     return;
   }
-  const randomUnstakeAmount = Math.floor(
-    Math.random() * (stakedAmount - stakedAmount / 10 + 1) + stakedAmount / 10
-  );
+  const randomUnstakeAmount = getRandomNumber(stakedAmount / 10, stakedAmount);
 
   await stakingcontractInstance.unStakeBuds(randomUnstakeAmount);
 };

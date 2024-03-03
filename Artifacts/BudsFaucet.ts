@@ -246,11 +246,11 @@ export const BudsFaucetData = (network: string) => {
         type: "function",
       },
     ],
-    address:
-      network == "sepolia"
-        ? "0x72FbF644EDdE7048b3eB9170e2615012F23028f6"
-        : network == "mumbai"
-        ? "0xF9005CcF4056B8a6d2e74be0C1Daf78824a5a7F7"
-        : "0x85b2E74E2D1e297c33acCd540A24A9Ef9141ee7B",
+    address: "0x5D5023AeA8F294328ED33378b6ae5B6B2E666ef9",
+    // network == "sepolia"
+    //   ? "0x72FbF644EDdE7048b3eB9170e2615012F23028f6"
+    //   : network == "mumbai"
+    //   ? "0xF9005CcF4056B8a6d2e74be0C1Daf78824a5a7F7"
+    //   : "0x85b2E74E2D1e297c33acCd540A24A9Ef9141ee7B",
   };
 };
