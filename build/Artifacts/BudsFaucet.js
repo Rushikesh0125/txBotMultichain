@@ -5,255 +5,299 @@ const BudsFaucetData = (network) => {
     return {
         abi: [
             {
-                anonymous: false,
-                inputs: [
+                "inputs": [
                     {
-                        indexed: false,
-                        internalType: "address",
-                        name: "previousAdmin",
-                        type: "address",
-                    },
-                    {
-                        indexed: false,
-                        internalType: "address",
-                        name: "newAdmin",
-                        type: "address",
-                    },
+                        "internalType": "address",
+                        "name": "target",
+                        "type": "address"
+                    }
                 ],
-                name: "AdminChanged",
-                type: "event",
+                "name": "AddressEmptyCode",
+                "type": "error"
             },
             {
-                anonymous: false,
-                inputs: [
+                "inputs": [
                     {
-                        indexed: true,
-                        internalType: "address",
-                        name: "beacon",
-                        type: "address",
-                    },
+                        "internalType": "address",
+                        "name": "implementation",
+                        "type": "address"
+                    }
                 ],
-                name: "BeaconUpgraded",
-                type: "event",
+                "name": "ERC1967InvalidImplementation",
+                "type": "error"
             },
             {
-                anonymous: false,
-                inputs: [
-                    {
-                        indexed: false,
-                        internalType: "uint8",
-                        name: "version",
-                        type: "uint8",
-                    },
-                ],
-                name: "Initialized",
-                type: "event",
+                "inputs": [],
+                "name": "ERC1967NonPayable",
+                "type": "error"
             },
             {
-                anonymous: false,
-                inputs: [
-                    {
-                        indexed: true,
-                        internalType: "address",
-                        name: "previousOwner",
-                        type: "address",
-                    },
-                    {
-                        indexed: true,
-                        internalType: "address",
-                        name: "newOwner",
-                        type: "address",
-                    },
-                ],
-                name: "OwnershipTransferred",
-                type: "event",
+                "inputs": [],
+                "name": "FailedInnerCall",
+                "type": "error"
             },
             {
-                anonymous: false,
-                inputs: [
-                    {
-                        indexed: true,
-                        internalType: "address",
-                        name: "implementation",
-                        type: "address",
-                    },
-                ],
-                name: "Upgraded",
-                type: "event",
+                "inputs": [],
+                "name": "InvalidInitialization",
+                "type": "error"
             },
             {
-                inputs: [],
-                name: "_budsToken",
-                outputs: [
-                    {
-                        internalType: "contract IERC20",
-                        name: "",
-                        type: "address",
-                    },
-                ],
-                stateMutability: "view",
-                type: "function",
+                "inputs": [],
+                "name": "NotInitializing",
+                "type": "error"
             },
             {
-                inputs: [
+                "inputs": [
                     {
-                        internalType: "address",
-                        name: "_receiver",
-                        type: "address",
-                    },
+                        "internalType": "address",
+                        "name": "owner",
+                        "type": "address"
+                    }
                 ],
-                name: "claim",
-                outputs: [],
-                stateMutability: "nonpayable",
-                type: "function",
+                "name": "OwnableInvalidOwner",
+                "type": "error"
             },
             {
-                inputs: [
+                "inputs": [
                     {
-                        internalType: "address",
-                        name: "_budsAddress",
-                        type: "address",
-                    },
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
                 ],
-                name: "initialize",
-                outputs: [],
-                stateMutability: "nonpayable",
-                type: "function",
+                "name": "OwnableUnauthorizedAccount",
+                "type": "error"
             },
             {
-                inputs: [
-                    {
-                        internalType: "address",
-                        name: "",
-                        type: "address",
-                    },
-                ],
-                name: "lastClaimeBy",
-                outputs: [
-                    {
-                        internalType: "uint256",
-                        name: "",
-                        type: "uint256",
-                    },
-                ],
-                stateMutability: "view",
-                type: "function",
+                "inputs": [],
+                "name": "UUPSUnauthorizedCallContext",
+                "type": "error"
             },
             {
-                inputs: [
+                "inputs": [
                     {
-                        internalType: "address",
-                        name: "_sender",
-                        type: "address",
-                    },
+                        "internalType": "bytes32",
+                        "name": "slot",
+                        "type": "bytes32"
+                    }
                 ],
-                name: "nextClaimTimeInSeconds",
-                outputs: [
-                    {
-                        internalType: "uint256",
-                        name: "",
-                        type: "uint256",
-                    },
-                ],
-                stateMutability: "view",
-                type: "function",
+                "name": "UUPSUnsupportedProxiableUUID",
+                "type": "error"
             },
             {
-                inputs: [],
-                name: "owner",
-                outputs: [
+                "anonymous": false,
+                "inputs": [
                     {
-                        internalType: "address",
-                        name: "",
-                        type: "address",
-                    },
+                        "indexed": false,
+                        "internalType": "uint64",
+                        "name": "version",
+                        "type": "uint64"
+                    }
                 ],
-                stateMutability: "view",
-                type: "function",
+                "name": "Initialized",
+                "type": "event"
             },
             {
-                inputs: [],
-                name: "proxiableUUID",
-                outputs: [
+                "anonymous": false,
+                "inputs": [
                     {
-                        internalType: "bytes32",
-                        name: "",
-                        type: "bytes32",
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "previousOwner",
+                        "type": "address"
                     },
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "newOwner",
+                        "type": "address"
+                    }
                 ],
-                stateMutability: "view",
-                type: "function",
+                "name": "OwnershipTransferred",
+                "type": "event"
             },
             {
-                inputs: [],
-                name: "renounceOwnership",
-                outputs: [],
-                stateMutability: "nonpayable",
-                type: "function",
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": true,
+                        "internalType": "address",
+                        "name": "implementation",
+                        "type": "address"
+                    }
+                ],
+                "name": "Upgraded",
+                "type": "event"
             },
             {
-                inputs: [
+                "inputs": [],
+                "name": "UPGRADE_INTERFACE_VERSION",
+                "outputs": [
                     {
-                        internalType: "address",
-                        name: "_budsToken_",
-                        type: "address",
-                    },
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
                 ],
-                name: "setBudsAddress",
-                outputs: [],
-                stateMutability: "nonpayable",
-                type: "function",
+                "stateMutability": "view",
+                "type": "function"
             },
             {
-                inputs: [
+                "inputs": [],
+                "name": "_budsToken",
+                "outputs": [
                     {
-                        internalType: "address",
-                        name: "newOwner",
-                        type: "address",
-                    },
+                        "internalType": "contract IERC20",
+                        "name": "",
+                        "type": "address"
+                    }
                 ],
-                name: "transferOwnership",
-                outputs: [],
-                stateMutability: "nonpayable",
-                type: "function",
+                "stateMutability": "view",
+                "type": "function"
             },
             {
-                inputs: [
+                "inputs": [
                     {
-                        internalType: "address",
-                        name: "newImplementation",
-                        type: "address",
-                    },
+                        "internalType": "address",
+                        "name": "_receiver",
+                        "type": "address"
+                    }
                 ],
-                name: "upgradeTo",
-                outputs: [],
-                stateMutability: "nonpayable",
-                type: "function",
+                "name": "claim",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
             },
             {
-                inputs: [
+                "inputs": [
                     {
-                        internalType: "address",
-                        name: "newImplementation",
-                        type: "address",
-                    },
-                    {
-                        internalType: "bytes",
-                        name: "data",
-                        type: "bytes",
-                    },
+                        "internalType": "address",
+                        "name": "_budsAddress",
+                        "type": "address"
+                    }
                 ],
-                name: "upgradeToAndCall",
-                outputs: [],
-                stateMutability: "payable",
-                type: "function",
+                "name": "initialize",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
             },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "name": "lastClaimeBy",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_sender",
+                        "type": "address"
+                    }
+                ],
+                "name": "nextClaimTimeInSeconds",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "owner",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "proxiableUUID",
+                "outputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "",
+                        "type": "bytes32"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "renounceOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_budsToken_",
+                        "type": "address"
+                    }
+                ],
+                "name": "setBudsAddress",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "newOwner",
+                        "type": "address"
+                    }
+                ],
+                "name": "transferOwnership",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "newImplementation",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "data",
+                        "type": "bytes"
+                    }
+                ],
+                "name": "upgradeToAndCall",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            }
         ],
-        address: network == "sepolia"
-            ? "0x72FbF644EDdE7048b3eB9170e2615012F23028f6"
-            : network == "mumbai"
-                ? "0xF9005CcF4056B8a6d2e74be0C1Daf78824a5a7F7"
-                : "0x85b2E74E2D1e297c33acCd540A24A9Ef9141ee7B",
+        address: "0xc01bC8B25245FfcA5950DDA2bC1e2e7B3279F822",
     };
 };
 exports.BudsFaucetData = BudsFaucetData;

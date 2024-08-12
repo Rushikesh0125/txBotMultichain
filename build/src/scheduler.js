@@ -31,7 +31,7 @@ function scheduleRandomScript() {
             raidPool_1.raidPool,
             unStake_1.unStake,
         ];
-        const networks = ["sepolia", "mumbai", "bscTestnet"];
+        const networks = ["fuji", "amoy", "bscTestnet", "beraTestnet", "baseSepolia", "arbSepolia"];
         function runRandomScript() {
             return __awaiter(this, void 0, void 0, function* () {
                 const randomScript = scripts[Math.floor(Math.random() * scripts.length)];

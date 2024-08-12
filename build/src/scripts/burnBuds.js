@@ -15,7 +15,7 @@ const getRandomUser_1 = require("../utils/getRandomUser");
 const getBudsAndAllowance_1 = require("./getBudsAndAllowance");
 const burnBuds = (network) => __awaiter(void 0, void 0, void 0, function* () {
     const privateKey = (yield (0, getRandomUser_1.getRandomUser)()) || "";
-    const budsContractInstance = yield (0, getContractInstance_1.getContractInstance)("Buds", network, privateKey);
+    const budsContractInstance = yield (0, getContractInstance_1.getContractInstance)("Staking", network, privateKey);
     yield (0, getBudsAndAllowance_1.getBudsAndAllowance)(privateKey, network, false);
     const rand = Math.floor(Math.random() * (2 - 1 + 1) + 1);
     console.log(rand);

@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { getContractInstance } from "../utils/getContractInstance";
 import { getRandomUser } from "../utils/getRandomUser";
 import { getNarcAndAllowance } from "../utils/getNarcAndAllowance";
+import { getRaidFees } from "../utils/getRaidFees";
 
 export const raidPool = async (network: string) => {
   const privateKey = (await getRandomUser()) || "";
@@ -14,12 +15,7 @@ export const raidPool = async (network: string) => {
     privateKey
   );
 
-  const raidFees =
-    network == "sepolia"
-      ? ethers.utils.parseEther("0.005")
-      : network == "bscTestnet"
-      ? ethers.utils.parseEther("0.0041")
-      : ethers.utils.parseEther("0.05");
+  const raidFees =await getRaidFees(network);
 
   const tx = await stakingcontractInstance.raid(0, {
     value: raidFees,

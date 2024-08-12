@@ -13,9 +13,10 @@ exports.getBudsAndAllowance = void 0;
 const ethers_1 = require("ethers");
 const getContractData_1 = require("../utils/getContractData");
 const getContractInstance_1 = require("../utils/getContractInstance");
+const getRandomNumber_1 = require("../utils/getRandomNumber");
 const getBudsAndAllowance = (privateKey, network, approve) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("randomizing the amount");
-    const randAmmount = ethers_1.ethers.utils.parseEther(Math.floor(Math.random() * (12000 - 2000 + 1) + 2000).toString());
+    const randAmmount = ethers_1.ethers.utils.parseEther((0, getRandomNumber_1.getRandomNumber)(2000, 12000).toString());
     console.log("getting buds contract");
     const budsInstance = yield (0, getContractInstance_1.getContractInstance)("Buds", network, privateKey);
     console.log("checking balance");

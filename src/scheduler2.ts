@@ -34,7 +34,7 @@ function scheduleScriptsForNetwork(network: string, scripts: Function[]) {
 }
 
 // Networks and the common set of scripts
-const networks = ["sepolia", "mumbai", "bscTestnet", "arbSepolia", "fuji"];
+const networks =["fuji", "amoy", "bscTestnet", "beraTestnet", "baseSepolia", "arbSepolia"];
 const commonScripts = [
   addStake,
   burnBuds,

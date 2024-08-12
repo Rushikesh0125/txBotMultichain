@@ -10,37 +10,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRandomChainSelector = void 0;
+const getRandomNumber_1 = require("./getRandomNumber");
 const getRandomChainSelector = (network) => __awaiter(void 0, void 0, void 0, function* () {
-    let randFactor = Math.floor(Math.random() * (10 - 1 + 1) + 1);
-    randFactor = randFactor % 2;
     const chainSelectors = [
-        "16015286601757825753",
-        "12532609583862916517",
-        "13264668187771770619",
+        "40245", //base
+        "40102", //bsc
+        "40106", //fuji
+        "40231", //arb
+        "40267", //amoy
+        "40291" //bera
     ];
-    if (network == "sepolia") {
-        if (randFactor == 0) {
-            return chainSelectors[1];
-        }
-        else {
-            return chainSelectors[2];
-        }
+    if (network == "baseSepolia") {
+        let randFactor = (0, getRandomNumber_1.getRandomNumber)(1, 5);
+        return chainSelectors[randFactor];
     }
-    else if (network == "mumbai") {
-        if (randFactor == 0) {
-            return chainSelectors[0];
-        }
-        else {
-            return chainSelectors[2];
-        }
+    else if (network == "bscTestnet") {
+        let randFactor = (0, getRandomNumber_1.getRandomNumber)(2, 5);
+        return chainSelectors[randFactor];
     }
-    else {
-        if (randFactor == 0) {
-            return chainSelectors[0];
-        }
-        else {
-            return chainSelectors[1];
-        }
+    else if (network == "fuji") {
+        let randFactor = (0, getRandomNumber_1.getRandomNumber)(3, 5);
+        return chainSelectors[randFactor];
+    }
+    else if (network == "arbSepolia") {
+        let randFactor = (0, getRandomNumber_1.getRandomNumber)(4, 5);
+        return chainSelectors[randFactor];
+    }
+    else if (network == "amoy") {
+        return chainSelectors[5];
     }
 });
 exports.getRandomChainSelector = getRandomChainSelector;

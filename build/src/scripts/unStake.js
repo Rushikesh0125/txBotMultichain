@@ -13,6 +13,7 @@ exports.unStake = void 0;
 const ethers_1 = require("ethers");
 const getContractInstance_1 = require("../utils/getContractInstance");
 const getRandomUser_1 = require("../utils/getRandomUser");
+const getRandomNumber_1 = require("../utils/getRandomNumber");
 const unStake = (network) => __awaiter(void 0, void 0, void 0, function* () {
     const privateKey = (yield (0, getRandomUser_1.getRandomUser)()) || "";
     const stakingcontractInstance = yield (0, getContractInstance_1.getContractInstance)("Staking", network, privateKey);
@@ -21,7 +22,7 @@ const unStake = (network) => __awaiter(void 0, void 0, void 0, function* () {
     if (stakedAmount == 0) {
         return;
     }
-    const randomUnstakeAmount = Math.floor(Math.random() * (stakedAmount - stakedAmount / 10 + 1) + stakedAmount / 10);
+    const randomUnstakeAmount = (0, getRandomNumber_1.getRandomNumber)(stakedAmount / 10, stakedAmount);
     yield stakingcontractInstance.unStakeBuds(randomUnstakeAmount);
 });
 exports.unStake = unStake;

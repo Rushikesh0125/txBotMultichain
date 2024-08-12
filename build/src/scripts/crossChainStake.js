@@ -28,7 +28,7 @@ const crossChainStake = (network) => __awaiter(void 0, void 0, void 0, function*
     //getting cross chain fees
     console.log(amount);
     console.log(chainSel);
-    const fees = yield stakingcontractInstance.getFeesForCCTX(ethers_1.ethers.utils.parseEther(amount), 0, chainSel);
+    const fees = yield stakingcontractInstance.getFeesForCCTX(chainSel, ethers_1.ethers.utils.parseEther(amount), 0, "0x4dC6c07bcd69a3a53052fB24b487a74623aE8a45");
     console.log(ethers_1.ethers.utils.formatEther(fees));
     //staking;
     const tx = yield stakingcontractInstance.crossChainStake(ethers_1.ethers.utils.parseEther(amount), 0, chainSel, { value: fees });

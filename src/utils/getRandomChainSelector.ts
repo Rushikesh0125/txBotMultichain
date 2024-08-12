@@ -2,35 +2,26 @@ import { getRandomNumber } from "./getRandomNumber";
 
 export const getRandomChainSelector = async (network: string) => {
   const chainSelectors = [
-    "16015286601757825753",
-    "12532609583862916517",
-    "13264668187771770619",
-    "3478487238524512106",
-    "14767482510784806043",
+    "40245",//base
+    "40102",//bsc
+    "40106",//fuji
+    "40231",//arb
+    "40267",//amoy
+    "40291"//bera
   ];
-  if (network == "sepolia") {
-    let randFactor = getRandomNumber(1, 4);
-    return chainSelectors[randFactor];
-  } else if (network == "mumbai") {
-    let randFactor = getRandomNumber(0, 4);
-    if (randFactor == 1) {
-      randFactor += 1;
-    }
+  if (network == "baseSepolia") {
+    let randFactor = getRandomNumber(1, 5);
     return chainSelectors[randFactor];
   } else if (network == "bscTestnet") {
-    let randFactor = getRandomNumber(0, 4);
-    if (randFactor == 2) {
-      randFactor += 1;
-    }
-    return chainSelectors[randFactor];
-  } else if (network == "arbSepolia") {
-    let randFactor = getRandomNumber(0, 4);
-    if (randFactor == 3) {
-      randFactor += 1;
-    }
+    let randFactor = getRandomNumber(2, 5);
     return chainSelectors[randFactor];
   } else if (network == "fuji") {
-    let randFactor = getRandomNumber(0, 3);
+    let randFactor = getRandomNumber(3, 5);
     return chainSelectors[randFactor];
+  } else if (network == "arbSepolia") {
+    let randFactor = getRandomNumber(4, 5);
+    return chainSelectors[randFactor];
+  } else if (network == "amoy") {
+    return chainSelectors[5];
   }
 };

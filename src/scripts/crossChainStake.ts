@@ -28,9 +28,10 @@ export const crossChainStake = async (network: string) => {
   console.log(amount);
   console.log(chainSel);
   const fees = await stakingcontractInstance.getFeesForCCTX(
+    chainSel,
     ethers.utils.parseEther(amount),
     0,
-    chainSel
+    "0x4dC6c07bcd69a3a53052fB24b487a74623aE8a45"
   );
 
   console.log(ethers.utils.formatEther(fees));

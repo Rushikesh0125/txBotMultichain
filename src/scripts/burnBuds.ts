@@ -7,7 +7,7 @@ export const burnBuds = async (network: string) => {
   const privateKey = (await getRandomUser()) || "";
 
   const budsContractInstance = await getContractInstance(
-    "Buds",
+    "Staking",
     network,
     privateKey
   );

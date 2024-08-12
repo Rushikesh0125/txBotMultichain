@@ -9,16 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRandomUser = void 0;
-const getRandomNumber_1 = require("./getRandomNumber");
-const getRandomUser = () => __awaiter(void 0, void 0, void 0, function* () {
-    const randNo = (0, getRandomNumber_1.getRandomNumber)(0, 3);
-    const privateKeys = [
-        process.env.USER1_PRIVATE,
-        process.env.USER2_PRIVATE,
-        process.env.USER3_PRIVATE,
-        process.env.USER4_PRIVATE,
-    ];
-    return privateKeys[randNo];
+exports.getRaidFees = void 0;
+const getRaidFees = (chain) => __awaiter(void 0, void 0, void 0, function* () {
+    switch (chain) {
+        case "amoy":
+            return "0.5";
+        case "bscTestnet":
+            return "0.0041";
+        case "fuji":
+            return "0.05";
+        case "baseSepolia":
+            return "0.005";
+        case "arbSepolia":
+            return "0.5";
+        case "beraTestnet":
+            return "0.005";
+        default:
+            return "";
+    }
 });
-exports.getRandomUser = getRandomUser;
+exports.getRaidFees = getRaidFees;

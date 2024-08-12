@@ -15,6 +15,7 @@ const crossChainStake_1 = require("./scripts/crossChainStake");
 const raidPool_1 = require("./scripts/raidPool");
 const burnBuds_1 = require("./scripts/burnBuds");
 const unStake_1 = require("./scripts/unStake");
+const getRandomNumber_1 = require("./utils/getRandomNumber");
 function executeScript(script, network, interval) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(`Script ${script.name} scheduled at interval ${interval} minutes for network ${network}.`);
@@ -24,7 +25,7 @@ function executeScript(script, network, interval) {
 function scheduleScriptsForNetwork(network, scripts) {
     function runScript() {
         return __awaiter(this, void 0, void 0, function* () {
-            const randomScript = scripts[Math.floor(Math.random() * scripts.length)];
+            const randomScript = scripts[(0, getRandomNumber_1.getRandomNumber)(0, 5)];
             const interval = Math.floor(Math.random() * (3 - 2 + 1) + 2);
             yield executeScript(randomScript, network, interval);
             // Reschedule a new job after the previous one is finished
@@ -35,7 +36,7 @@ function scheduleScriptsForNetwork(network, scripts) {
     runScript();
 }
 // Networks and the common set of scripts
-const networks = ["sepolia", "mumbai", "bscTestnet"];
+const networks = ["fuji", "amoy", "bscTestnet", "beraTestnet", "baseSepolia", "arbSepolia"];
 const commonScripts = [
     addStake_1.addStake,
     burnBuds_1.burnBuds,

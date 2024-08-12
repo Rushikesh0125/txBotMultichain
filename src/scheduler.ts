@@ -26,7 +26,7 @@ async function scheduleRandomScript() {
     unStake,
   ];
 
-  const networks = ["sepolia", "mumbai", "bscTestnet"];
+  const networks = ["fuji", "amoy", "bscTestnet", "beraTestnet", "baseSepolia", "arbSepolia"];
 
   async function runRandomScript() {
     const randomScript = scripts[Math.floor(Math.random() * scripts.length)];

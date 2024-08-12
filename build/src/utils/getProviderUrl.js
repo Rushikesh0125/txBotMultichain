@@ -1,30 +1,33 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProviderURLs = void 0;
-require("dotenv").config();
+require('dotenv').config();
 const getProviderURLs = (networkName) => {
     switch (networkName) {
-        case "mainnet":
-            return process.env.MAINNET;
-        case "sepolia":
-            return process.env.SEPOLIA_URL;
-        case "polygon":
+        case 'polygon':
             return process.env.POLYGON;
-        case "mumbai":
-            return process.env.MUMBAI_URL;
-        case "bsc":
+        case 'amoy':
+            return process.env.RPC_URL_AMOY;
+        case 'bsc':
             return process.env.BSC;
-        case "bscTestnet":
-            return process.env.BSCTESTNET_URL;
-        case "avalanche":
+        case 'bscTestnet':
+            return process.env.RPC_URL_BSCTESTNET;
+        case 'avalanche':
             return process.env.AVALANCH;
-        case "fuji":
-            return process.env.FUJI_URL;
-        case "arbitrum":
+        case 'fuji':
+            return process.env.RPC_URL_FUJI;
+        case 'arbitrum':
             return process.env.ARBITRUM;
-        case "arbSepolia":
-            return process.env.ARBSEPOLIA_URL;
+        case 'arbSepolia':
+            return process.env.RPC_URL_ARBSEPOLIA;
+        case 'sepolia':
+            return process.env.RPC_URL_SEPOLIA;
+        case 'beraTestnet':
+            return process.env.RPC_URL_BERA;
+        case 'baseSepolia':
+            return process.env.RPC_URL_BASE_SEPOLIA;
+        case 'coreTestnet':
+            return process.env.RPC_URL_CORE_TESTNET;
     }
 };
 exports.getProviderURLs = getProviderURLs;
-// console.log(getProviderURLs("mumbai"));
